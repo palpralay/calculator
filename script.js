@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const icon = buttonElement.querySelector("i");
         let value = "";
   
-        // Determine button value
         if (icon) {
           const iconClass = icon.classList[1];
           value = iconMap[iconClass] || "";
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
           value = buttonElement.textContent.trim();
         }
   
-        // Handle different button types
         switch (value) {
           case "=":
             calculateResult();
@@ -50,18 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function handleInput(value) {
       const lastChar = calculationString.slice(-1);
       
-      // Prevent multiple operators in a row
       if (isOperator(value)) {
         if (calculationString === "" || isOperator(lastChar)) return;
       }
   
-      // Handle percentage conversion
       if (value === "%") {
         calculationString += "/100";
         return;
       }
   
-      // Handle decimal points
       if (value === ".") {
         const currentNumber = calculationString.split(/[\+\-\*\/]/).pop();
         if (currentNumber.includes(".")) return;
